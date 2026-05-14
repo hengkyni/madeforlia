@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sprite Viewer</title>
+    <style>
+        body { background: #333; color: white; font-family: sans-serif; text-align: center; }
+        img { border: 2px solid red; max-width: 100%; image-rendering: pixelated; }
+    </style>
+</head>
+<body>
+    <h1>cowo.png</h1>
+    <img src="/cowo.png" id="cowo" />
+    
+    <script>
+        const img = document.getElementById('cowo');
+        img.onload = () => {
+            const w = img.naturalWidth;
+            const h = img.naturalHeight;
+            const info = document.createElement('h2');
+            info.innerText = `Dimensions: ${w}x${h}`;
+            document.body.appendChild(info);
+        };
+    </script>
+</body>
+</html>
