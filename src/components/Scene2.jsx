@@ -106,6 +106,11 @@ export default function Scene2() {
         overflow: step < 5 ? 'hidden' : 'visible',
         background: (step >= 5 && step < 15) ? '#fff' : '#000'
       }}>
+      {/* Audio Backsound 2 (Mulai dari dialog Hehehehe, Halo cantik) */}
+      {step >= 5 && (
+        <audio autoPlay loop src="/segalanya.m4a" id="bgMusic2" />
+      )}
+
       {/* Background Video */}
       {step < 5 && (
         <video
