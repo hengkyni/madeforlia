@@ -10,9 +10,12 @@ const particles = Array.from({ length: 150 }).map((_, i) => ({
   duration: `${Math.random() * 3 + 2}s`
 }));
 
-export default function Scene2() {
+export default function Scene2({ isMuted }) {
   const [step, setStep] = useState(0);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupStage, setPopupStage] = useState(1);
+  const [noBtnPos, setNoBtnPos] = useState({});
   const photos = ['/c.jpeg', '/c2.jpeg', '/c3.jpeg'];
 
   useEffect(() => {
@@ -89,9 +92,42 @@ export default function Scene2() {
   });
 
   const handleClick = () => {
+    if (showPopup) return; // Block klik layar utama kalau popup aktif
+
+    if (step === 4) {
+      setShowPopup(true);
+      setPopupStage(1);
+      setNoBtnPos({});
+      return;
+    }
+
     if (step < scenario.length - 1) {
       setStep(step + 1);
     }
+  };
+
+  const handleYesClick = (e) => {
+    e.stopPropagation();
+    if (popupStage < 4) {
+      setPopupStage(popupStage + 1);
+      setNoBtnPos({}); // Reset posisi No tiap ganti stage
+    } else {
+      setShowPopup(false);
+      setStep(5); // Lanjut ceritanya
+    }
+  };
+
+  const handleNoHover = (e) => {
+    e.stopPropagation();
+    // Tombol kabur kemana-mana di seluruh layar
+    const randomTop = Math.floor(Math.random() * 80) + 10; 
+    const randomLeft = Math.floor(Math.random() * 80) + 10; 
+    setNoBtnPos({
+      position: 'fixed',
+      top: `${randomTop}%`,
+      left: `${randomLeft}%`,
+      zIndex: 100000,
+    });
   };
 
   return (
@@ -108,7 +144,7 @@ export default function Scene2() {
       }}>
       {/* Audio Backsound 2 (Mulai dari dialog Hehehehe, Halo cantik) */}
       {step >= 5 && (
-        <audio autoPlay loop src="/segalanya.m4a" id="bgMusic2" />
+        <audio autoPlay loop muted={isMuted} src="/segalanya.m4a" id="bgMusic2" />
       )}
 
       {/* Background Video */}
@@ -134,6 +170,101 @@ export default function Scene2() {
       {/* Efek Flash Transition */}
       {step === 5 && (
         <div className="flash-effect" style={{ zIndex: 5 }} />
+      )}
+
+      {/* Pop Up Usil */}
+      {showPopup && (
+        <div 
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'rgba(0,0,0,0.7)',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backdropFilter: 'blur(3px)'
+          }}>
+          <div style={{
+            background: 'rgba(0, 0, 0, 0.85)',
+            padding: '5%',
+            border: '4px solid #fff',
+            borderRadius: '0px',
+            boxShadow: '0 0 15px rgba(255, 255, 255, 0.2)',
+            textAlign: 'center',
+            minWidth: 'min(350px, 80vw)',
+            maxHeight: '90vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            position: 'relative',
+            fontFamily: '"VT323", monospace'
+          }}>
+            <h3 style={{ 
+              color: '#fff', 
+              marginBottom: '8%', 
+              fontSize: 'clamp(24px, 5vw, 32px)', 
+              letterSpacing: '2px',
+              textShadow: '2px 2px 0px #000'
+            }}>
+              {popupStage === 1 && "YAKIN INGIN MELANJUTKAN?"}
+              {popupStage === 2 && "YAKIN INGIN LANJUT?"}
+              {popupStage === 3 && "BENER NIH?"}
+              {popupStage === 4 && "SERIUS NIH??"}
+            </h3>
+            
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '8%', minHeight: '40px' }}>
+              <button 
+                onClick={handleYesClick}
+                style={{
+                  padding: '8px 24px',
+                  background: '#000',
+                  color: '#fff',
+                  border: '2px solid #fff',
+                  borderRadius: '0px',
+                  fontSize: 'clamp(20px, 4vw, 24px)',
+                  fontFamily: '"VT323", monospace',
+                  cursor: 'pointer',
+                  textTransform: 'uppercase',
+                  letterSpacing: '2px',
+                  transition: 'background 0.1s, color 0.1s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#fff';
+                  e.currentTarget.style.color = '#000';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#000';
+                  e.currentTarget.style.color = '#fff';
+                }}
+              >
+                Yes
+              </button>
+
+              <button 
+                onMouseEnter={handleNoHover}
+                onClick={handleNoHover} // buat jaga-jaga kalau dia bisa klik cepat
+                style={{
+                  padding: '8px 24px',
+                  background: '#000',
+                  color: '#fff',
+                  border: '2px solid #fff',
+                  borderRadius: '0px',
+                  fontSize: 'clamp(20px, 4vw, 24px)',
+                  fontFamily: '"VT323", monospace',
+                  cursor: 'pointer',
+                  textTransform: 'uppercase',
+                  letterSpacing: '2px',
+                  transition: 'background 0.1s, color 0.1s, top 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  ...noBtnPos
+                }}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Gambar Karakter Scene 2 */}
@@ -300,8 +431,9 @@ export default function Scene2() {
       <div style={{
         position: 'absolute',
         bottom: '0px',
-        left: '50%',
-        transform: 'translateX(-50%)',
+        left: 0,
+        right: 0,
+        margin: '0 auto',
         width: '90%',
         maxWidth: 864,
         zIndex: 10,

@@ -2,7 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 export default function TheEnd({ onComplete }) {
   const [visible, setVisible] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [stars, setStars] = useState([]);
+
+  const handleComplete = () => {
+    if (isClosing) return;
+    setIsClosing(true);
+    setTimeout(() => {
+      if (onComplete) onComplete();
+    }, 550); // Menunggu durasi animasi selesai
+  };
 
   useEffect(() => {
     // Fade in setelah mount
@@ -24,7 +33,7 @@ export default function TheEnd({ onComplete }) {
 
   return (
     <div
-      onClick={onComplete}
+      onClick={handleComplete}
       style={{
         position: 'fixed',
         inset: 0,
@@ -38,6 +47,7 @@ export default function TheEnd({ onComplete }) {
         transition: 'opacity 1.8s ease',
         zIndex: 9999,
         cursor: 'pointer',
+        animation: isClosing ? 'crtTurnOff 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards' : 'none',
       }}
     >
       {/* Bintang-bintang */}
@@ -151,6 +161,24 @@ export default function TheEnd({ onComplete }) {
         @keyframes pulse {
           0%, 100% { transform: scale(1); opacity: 0.7; }
           50% { transform: scale(1.15); opacity: 1; }
+        }
+
+        @keyframes crtTurnOff {
+          0% {
+            transform: scale(1, 1);
+            opacity: 1;
+            filter: brightness(1);
+          }
+          40% {
+            transform: scale(1, 0.005);
+            opacity: 1;
+            filter: brightness(5);
+          }
+          100% {
+            transform: scale(0, 0.005);
+            opacity: 0;
+            filter: brightness(10);
+          }
         }
       `}</style>
     </div>
