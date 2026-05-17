@@ -137,8 +137,8 @@ export default function Scene2({ isMuted }) {
         position: 'relative',
         width: '100%',
         maxWidth: step >= 15 ? '100vw' : 960,
-        height: step >= 15 ? '100vh' : '72vh',
-        margin: step >= 15 ? '0 auto' : '4vh auto 0',
+        height: '100%',
+        margin: '0 auto',
         overflow: step < 5 ? 'hidden' : 'visible',
         background: (step >= 5 && step < 15) ? '#fff' : '#000'
       }}>
@@ -431,7 +431,7 @@ export default function Scene2({ isMuted }) {
       {/* Kotak Dialog Overlay (Diposisikan di Bawah) */}
       <div style={{
         position: 'absolute',
-        bottom: '0px',
+        bottom: '3%',
         left: 0,
         right: 0,
         margin: '0 auto',

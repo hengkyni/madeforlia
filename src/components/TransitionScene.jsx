@@ -27,8 +27,8 @@ export default function TransitionScene({ onComplete }) {
         position: 'relative',
         width: '100%',
         maxWidth: 960,
-        height: '72vh',
-        margin: '4vh auto 0',
+        height: '100%',
+        margin: '0 auto',
         overflow: 'hidden',
         background: '#000',
         cursor: 'pointer'
@@ -71,7 +71,7 @@ export default function TransitionScene({ onComplete }) {
       {/* Kotak Teks Cerita (Diposisikan di Bawah) */}
       <div style={{
         position: 'absolute',
-        bottom: '20px',
+        bottom: '3%',
         left: 0,
         right: 0,
         margin: '0 auto',
