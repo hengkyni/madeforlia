@@ -34,20 +34,20 @@ export default function Scene2({ isMuted }) {
     { image: '/4.PNG', name: 'Cowo', text: 'Anjir siapa ini cantik amat.' },
     { image: '/5.PNG', name: 'Cowo', text: 'Coba aja aku punya putri secantik itu,hehehehe...' },
     { image: '/5.PNG', name: 'Cowo', text: 'Eh bentar... lah kan emang ada ya' },
-    { image: '/senyum.png', name: 'Lia', text: 'Hehehehe, Halo cantik' },
-    { image: '/sedih.png', name: 'Lia', text: 'maap ya ceritanya kaga jelas,hehe.....' },
-    { image: '/garpal.png', name: 'Lia', text: 'Niatnya tadi pengen bikin cerita yang keren, tapi gagal wkwkwkwk' },
-    { image: '/senyum.png', name: 'Lia', text: 'Tapi intinya,terimakasih ya cantik udah lahir di dunia,dan udah biarin aku untuk ketemu kamu' },
-    { image: '/senyum.png', name: 'Lia', text: 'Terimakasih juga ya sudah hidup sampe detik ini cantik....' },
-    { image: '/bingung.png', name: 'Lia', text: 'Hemm... ' },
-    { image: '/senyum.png', name: 'Lia', text: 'mari kita lihat dulu wanita kesayangan saya ini ' },
-    { image: '/wah.png', name: 'Lia', text: 'Ini dia orangnya...' },
-    { image: '/yey.png', name: 'Lia', text: 'Cantik betul kannn!!!' },
-    { image: '/senyum1.png', name: 'Lia', text: 'intinya...' },
-    { image: '/senyum1.png', name: 'Lia', text: 'Selamat ulang tahun ya cantik...' },
-    { image: '/senyum1.png', name: 'Lia', text: 'Semoga panjang umur,sehat selalu,makin cantik,dan selalu diliputi bahagia ya cantik' },
-    { image: '/senyum1.png', name: 'Lia', text: 'Terimakasih ya udh biarin aku jadi bagian dari hidup kamu' },
-    { image: '/senyum1.png', name: 'Lia', text: 'Happy Birthday lia' },
+    { image: '/senyum.png', name: 'Cowo', text: 'Hehehehe, Halo Cantik' },
+    { image: '/sedih.png', name: 'Cowo', text: 'maap ya ceritanya kaga jelas,hehe.....' },
+    { image: '/garpal.png', name: 'Cowo', text: 'Niatnya tadi pengen bikin cerita yang keren, tapi gagal wkwkwkwk' },
+    { image: '/senyum.png', name: 'Cowo', text: 'Tapi intinya,terimakasih ya cantik udah lahir di dunia,dan udah biarin aku untuk ketemu kamu' },
+    { image: '/senyum.png', name: 'Cowo', text: 'Terimakasih juga ya sudah hidup sampe detik ini cantik....' },
+    { image: '/bingung.png', name: 'Cowo', text: 'Hemm... ' },
+    { image: '/senyum.png', name: 'Cowo', text: 'mari kita lihat dulu wanita kesayangan saya ini ' },
+    { image: '/wah.png', name: 'Cowo', text: 'Ini dia orangnya...' },
+    { image: '/yey.png', name: 'Cowo', text: 'Cantik betul kannn!!!' },
+    { image: '/senyum1.png', name: 'Cowo', text: 'intinya...' },
+    { image: '/senyum1.png', name: 'Cowo', text: 'Selamat ulang tahun ya cantik...' },
+    { image: '/senyum1.png', name: 'Cowo', text: 'Semoga panjang umur,sehat selalu,makin cantik,dan selalu diliputi bahagia ya cantik' },
+    { image: '/senyum1.png', name: 'Cowo', text: 'Terimakasih ya udh biarin aku jadi bagian dari hidup kamu' },
+    { image: '/senyum1.png', name: 'Cowo', text: 'Happy Birthday lia' },
   ];
 
   const finalCardsOriginal = [
@@ -65,21 +65,21 @@ export default function Scene2({ isMuted }) {
   const photosArray = ['/c.jpeg', '/c2.jpeg', '/c3.jpeg', '/c4.jpeg', '/c5.jpeg', '/c6.jpeg', '/c7.jpeg', '/c8.jpeg', '/c9.jpeg'];
   const allCards = Array.from({ length: 18 }).map((_, i) => {
     const src = photosArray[i % photosArray.length];
-    
+
     // Original 9 cards use their initial layout, the rest start from the center
     const scatterTop = i < 9 ? finalCardsOriginal[i].top : '50%';
     const scatterLeft = i < 9 ? finalCardsOriginal[i].left : '50%';
-    const scatterRot = i < 9 ? finalCardsOriginal[i].rot : '0deg'; 
-    
+    const scatterRot = i < 9 ? finalCardsOriginal[i].rot : '0deg';
+
     // Parametric heart formula
     const t = (i / 18) * Math.PI * 2;
     const x = 16 * Math.pow(Math.sin(t), 3);
-    const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
-    
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+
     // Scale to screen percentages
-    const heartLeft = 50 + (x / 16) * 35; 
+    const heartLeft = 50 + (x / 16) * 35;
     const heartTop = 50 + ((y - 5) / 12) * 28;
-    
+
     return {
       src,
       scatterTop,
@@ -120,8 +120,8 @@ export default function Scene2({ isMuted }) {
   const handleNoHover = (e) => {
     e.stopPropagation();
     // Tombol kabur kemana-mana di seluruh layar
-    const randomTop = Math.floor(Math.random() * 80) + 10; 
-    const randomLeft = Math.floor(Math.random() * 80) + 10; 
+    const randomTop = Math.floor(Math.random() * 80) + 10;
+    const randomLeft = Math.floor(Math.random() * 80) + 10;
     setNoBtnPos({
       position: 'fixed',
       top: `${randomTop}%`,
@@ -138,7 +138,7 @@ export default function Scene2({ isMuted }) {
         width: '100%',
         maxWidth: step >= 15 ? '100vw' : 960,
         height: step >= 15 ? '100vh' : '72vh',
-        margin: step >= 15 ? '0 auto' : '4vh auto 0', 
+        margin: step >= 15 ? '0 auto' : '4vh auto 0',
         overflow: step < 5 ? 'hidden' : 'visible',
         background: (step >= 5 && step < 15) ? '#fff' : '#000'
       }}>
@@ -174,7 +174,7 @@ export default function Scene2({ isMuted }) {
 
       {/* Pop Up Usil */}
       {showPopup && (
-        <div 
+        <div
           onClick={(e) => e.stopPropagation()}
           style={{
             position: 'absolute',
@@ -201,10 +201,10 @@ export default function Scene2({ isMuted }) {
             position: 'relative',
             fontFamily: '"VT323", monospace'
           }}>
-            <h3 style={{ 
-              color: '#fff', 
-              marginBottom: '8%', 
-              fontSize: 'clamp(24px, 5vw, 32px)', 
+            <h3 style={{
+              color: '#fff',
+              marginBottom: '8%',
+              fontSize: 'clamp(24px, 5vw, 32px)',
               letterSpacing: '2px',
               textShadow: '2px 2px 0px #000'
             }}>
@@ -213,9 +213,9 @@ export default function Scene2({ isMuted }) {
               {popupStage === 3 && "BENER NIH?"}
               {popupStage === 4 && "SERIUS NIH??"}
             </h3>
-            
+
             <div style={{ display: 'flex', justifyContent: 'center', gap: '8%', minHeight: '40px' }}>
-              <button 
+              <button
                 onClick={handleYesClick}
                 style={{
                   padding: '8px 24px',
@@ -242,7 +242,7 @@ export default function Scene2({ isMuted }) {
                 Yes
               </button>
 
-              <button 
+              <button
                 onMouseEnter={handleNoHover}
                 onClick={handleNoHover} // buat jaga-jaga kalau dia bisa klik cepat
                 style={{
@@ -343,88 +343,89 @@ export default function Scene2({ isMuted }) {
 
       {/* Wrapper untuk membatasi penyebaran dan ukuran kartu di layar lebar */}
       <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', maxWidth: 960, height: '100%', pointerEvents: 'none' }}>
-        
-      {/* Efek Cards Akhir */}
-      {step >= 15 && allCards.map((card, idx) => {
-        const isHeart = step === 18;
-        const isOriginal = idx < 9;
-        return (
-          <div
-            key={idx}
-            style={{
-              position: 'absolute',
-              top: isHeart ? card.heartTop : card.scatterTop,
-              left: isHeart ? card.heartLeft : card.scatterLeft,
-              width: isHeart ? '10%' : (isOriginal ? '14%' : '10%'),
-              transform: `translate(-50%, -50%) rotate(${isHeart ? card.heartRot : card.scatterRot})`,
-              zIndex: isHeart ? 5 : 0,
-              perspective: '1000px',
-              transition: 'all 1.5s cubic-bezier(0.25, 1, 0.5, 1)',
-              opacity: (!isOriginal && !isHeart) ? 0 : 1,
-            }}
-          >
-          <div
-            style={{
-              position: 'relative',
-              width: '100%',
-              transformStyle: 'preserve-3d',
-              opacity: isOriginal ? 0 : 1,
-              animation: isOriginal ? `realFlip 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards ${idx * 0.4}s` : 'none'
-            }}
-          >
-            {/* Bagian Depan Kartu (Foto Asli) */}
-            <img
-              src={card.src}
-              alt={`Memory ${idx}`}
-              style={{
-                display: 'block',
-                width: '100%',
-                borderRadius: '12px',
-                boxShadow: isHeart ? '0 0 15px rgba(255, 182, 193, 0.9)' : '0 8px 20px rgba(0,0,0,0.3)',
-                objectFit: 'cover',
-                border: isHeart ? '3px solid #ffb6c1' : '4px solid white',
-                transition: 'box-shadow 1.5s ease, border 1.5s ease',
-                backfaceVisibility: 'hidden',
-                WebkitBackfaceVisibility: 'hidden',
-              }}
-            />
-            {/* Bagian Belakang Kartu (Desain) */}
+
+        {/* Efek Cards Akhir */}
+        {step >= 15 && allCards.map((card, idx) => {
+          const isHeart = step === 18;
+          const isOriginal = idx < 9;
+          return (
             <div
+              key={idx}
               style={{
                 position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                background: 'linear-gradient(135deg, #2a2a2a 0%, #111 100%)',
-                borderRadius: '12px',
-                border: '4px solid #666',
-                boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
-                backfaceVisibility: 'hidden',
-                WebkitBackfaceVisibility: 'hidden',
-                transform: 'rotateY(180deg)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                top: isHeart ? card.heartTop : card.scatterTop,
+                left: isHeart ? card.heartLeft : card.scatterLeft,
+                width: isHeart ? '10%' : (isOriginal ? '14%' : '10%'),
+                transform: `translate(-50%, -50%) rotate(${isHeart ? card.heartRot : card.scatterRot})`,
+                zIndex: isHeart ? 5 : 0,
+                perspective: '1000px',
+                transition: 'all 1.5s cubic-bezier(0.25, 1, 0.5, 1)',
+                opacity: (!isOriginal && !isHeart) ? 0 : 1,
               }}
             >
-              <div style={{
-                width: '80%',
-                height: '80%',
-                border: '2px dashed #555',
-                borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#555',
-                fontSize: '2vw'
-              }}>
-                ✨
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  transformStyle: 'preserve-3d',
+                  opacity: isOriginal ? 0 : 1,
+                  animation: isOriginal ? `realFlip 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards ${idx * 0.4}s` : 'none'
+                }}
+              >
+                {/* Bagian Depan Kartu (Foto Asli) */}
+                <img
+                  src={card.src}
+                  alt={`Memory ${idx}`}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    borderRadius: '12px',
+                    boxShadow: isHeart ? '0 0 15px rgba(255, 182, 193, 0.9)' : '0 8px 20px rgba(0,0,0,0.3)',
+                    objectFit: 'cover',
+                    border: isHeart ? '3px solid #ffb6c1' : '4px solid white',
+                    transition: 'box-shadow 1.5s ease, border 1.5s ease',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                  }}
+                />
+                {/* Bagian Belakang Kartu (Desain) */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: 'linear-gradient(135deg, #2a2a2a 0%, #111 100%)',
+                    borderRadius: '12px',
+                    border: '4px solid #666',
+                    boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div style={{
+                    width: '80%',
+                    height: '80%',
+                    border: '2px dashed #555',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#555',
+                    fontSize: '2vw'
+                  }}>
+                    ✨
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )})}
+          )
+        })}
       </div>
 
       {/* Kotak Dialog Overlay (Diposisikan di Bawah) */}
